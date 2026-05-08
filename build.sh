@@ -20,3 +20,8 @@ flutter pub get
 # Build the Web app
 echo "Building Flutter Web app..."
 flutter build web --release
+
+# Copy to public for Vercel
+echo "Preparing output for Vercel..."
+mkdir -p public
+cp -r build/web/* public/
