@@ -13,6 +13,10 @@ export PATH="$PATH:`pwd`/flutter/bin"
 echo "Flutter version:"
 flutter --version
 
+# Clean previous build to prevent caching issues
+echo "Cleaning previous builds..."
+flutter clean
+
 # Install dependencies
 echo "Installing dependencies..."
 flutter pub get
