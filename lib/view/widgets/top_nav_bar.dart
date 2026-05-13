@@ -52,7 +52,7 @@ class TopNavBar extends StatelessWidget {
             Row(
               children: [
                 _navItem(
-                  'hgghghgff',
+                  'HOME',
                   () => controller.scrollToSection(controller.homeKey),
                 ),
                 _navItem(
