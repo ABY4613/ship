@@ -8,7 +8,7 @@ class CatalogueSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 800;
+    final isMobile = size.width < 1000;
 
     return Container(
       color: AppColors.backgroundLight,

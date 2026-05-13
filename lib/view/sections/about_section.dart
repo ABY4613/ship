@@ -105,8 +105,10 @@ class AboutSection extends StatelessWidget {
         const SizedBox(height: 60),
         Divider(color: AppColors.textGrey.withOpacity(0.2)),
         const SizedBox(height: 40),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Wrap(
+          spacing: 20,
+          runSpacing: 20,
+          alignment: WrapAlignment.spaceBetween,
           children: [
             _statItem('120+', 'YACHTS', true),
             _statItem('46', 'DESTINATIONS', false),

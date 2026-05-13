@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
+      endDrawer: _buildMobileDrawer(controller),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -83,5 +84,37 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildMobileDrawer(HomeController controller) {
+    return Drawer(
+      backgroundColor: AppColors.primaryNavy,
+      child: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+        children: [
+          _drawerItem('HOME', () => _closeAndScroll(controller.homeKey)),
+          _drawerItem('FLEET', () => _closeAndScroll(controller.fleetKey)),
+          _drawerItem('DESTINATIONS', () => _closeAndScroll(controller.destinationsKey)),
+          _drawerItem('SERVICES', () => _closeAndScroll(controller.servicesKey)),
+          _drawerItem('ABOUT', () => _closeAndScroll(controller.aboutKey)),
+          _drawerItem('CONTACT', () => _closeAndScroll(controller.contactKey)),
+        ],
+      ),
+    );
+  }
+
+  Widget _drawerItem(String title, VoidCallback onTap) {
+    return ListTile(
+      title: Text(
+        title,
+        style: AppTextStyles.heading3.copyWith(color: AppColors.white),
+      ),
+      onTap: onTap,
+    );
+  }
+
+  void _closeAndScroll(GlobalKey key) {
+    Get.back(); // close drawer
+    Get.find<HomeController>().scrollToSection(key);
   }
 }

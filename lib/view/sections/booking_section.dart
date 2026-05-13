@@ -32,14 +32,19 @@ class BookingSection extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      _tabItem('DAY CHARTER', Icons.sailing, false),
-                      const SizedBox(width: 10),
-                      _tabItem('WEEKLY VOYAGE', Icons.anchor, true),
-                      const SizedBox(width: 10),
-                      _tabItem('CORPORATE', Icons.business_center, false),
-                    ],
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          _tabItem('DAY CHARTER', Icons.sailing, false),
+                          const SizedBox(width: 10),
+                          _tabItem('WEEKLY VOYAGE', Icons.anchor, true),
+                          const SizedBox(width: 10),
+                          _tabItem('CORPORATE', Icons.business_center, false),
+                        ],
+                      ),
+                    ),
                   ),
                   if (!isMobile)
                     Row(
@@ -93,27 +98,49 @@ class BookingSection extends StatelessWidget {
             const Divider(height: 1, color: AppColors.dividerColor),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text('NO BOOKING FEES', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
-                      const SizedBox(width: 20),
-                      Text('FLEXIBLE CANCELLATION', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
-                      const SizedBox(width: 20),
-                      if (!isMobile) Text('CONCIERGE INCLUDED', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.star, color: AppColors.accentGold, size: 14),
-                      const SizedBox(width: 4),
-                      Text('4.98 • 2,400+ CHARTERS', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
-                    ],
-                  )
-                ],
-              ),
+              child: isMobile
+                  ? Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('NO BOOKING FEES', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey, fontSize: 8)),
+                            const SizedBox(width: 10),
+                            Text('FLEXIBLE CANCELLATION', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey, fontSize: 8)),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.star, color: AppColors.accentGold, size: 14),
+                            const SizedBox(width: 4),
+                            Text('4.98 • 2,400+ CHARTERS', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey, fontSize: 8)),
+                          ],
+                        ),
+                      ],
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text('NO BOOKING FEES', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
+                            const SizedBox(width: 20),
+                            Text('FLEXIBLE CANCELLATION', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
+                            const SizedBox(width: 20),
+                            Text('CONCIERGE INCLUDED', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Icon(Icons.star, color: AppColors.accentGold, size: 14),
+                            const SizedBox(width: 4),
+                            Text('4.98 • 2,400+ CHARTERS', style: AppTextStyles.overline.copyWith(color: AppColors.textGrey)),
+                          ],
+                        )
+                      ],
+                    ),
             )
           ],
         ),
@@ -172,20 +199,72 @@ class BookingSection extends StatelessWidget {
   }
 
   Widget _checkAvailabilityButton() {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primaryNavy,
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(Icons.search, color: AppColors.white, size: 16),
-          const SizedBox(width: 8),
-          Text('CHECK AVAILABILITY', style: AppTextStyles.buttonText.copyWith(color: AppColors.white)),
-        ],
+    return const _CheckAvailabilityButton();
+  }
+}
+
+class _CheckAvailabilityButton extends StatefulWidget {
+  const _CheckAvailabilityButton();
+
+  @override
+  State<_CheckAvailabilityButton> createState() => _CheckAvailabilityButtonState();
+}
+
+class _CheckAvailabilityButtonState extends State<_CheckAvailabilityButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOutQuint,
+        transform: Matrix4.identity()..scale(_isHovered ? 1.05 : 1.0),
+        decoration: BoxDecoration(
+          color: _isHovered ? AppColors.accentGold : AppColors.primaryNavy,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: _isHovered
+              ? [
+                  BoxShadow(
+                    color: AppColors.accentGold.withOpacity(0.6),
+                    blurRadius: 20,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 5),
+                  )
+                ]
+              : [],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 300),
+                    style: AppTextStyles.buttonText.copyWith(
+                      color: _isHovered ? AppColors.primaryNavy : AppColors.white,
+                    ),
+                    child: const Text('CHECK AVAILABILITY'),
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: _isHovered ? AppColors.primaryNavy : AppColors.white,
+                    size: 16,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
