@@ -5,9 +5,14 @@ import '../utils/colors.dart';
 import '../utils/text_styles.dart';
 import 'sections/hero_section.dart';
 import 'sections/booking_section.dart';
-import 'sections/catalogue_section.dart';
 import 'sections/offers_section.dart';
+import 'sections/catalogue_section.dart';
 import 'sections/destinations_section.dart';
+import 'sections/available_now_section.dart';
+import 'sections/services_section.dart';
+import 'sections/about_section.dart';
+import 'sections/logbook_section.dart';
+import 'sections/footer_section.dart';
 import 'widgets/top_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,34 +34,42 @@ class HomeScreen extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     HeroSection(key: controller.homeKey),
-                    Positioned(
+                    const Positioned(
                       bottom: -100, // Overlaps the bottom of the hero section
                       left: 0,
                       right: 0,
-                      child: const BookingSection(),
+                      child: BookingSection(),
                     ),
                   ],
                 ),
                 const SizedBox(height: 160), // Space to account for the overlapping booking section
-                OffersSection(key: controller.servicesKey),
-                const SizedBox(height: 80),
+                
+                // 1. Seasonal Offers
+                const OffersSection(),
+                
+                // 2. The Fleet
                 CatalogueSection(key: controller.fleetKey),
-                const SizedBox(height: 80),
+                
+                // 3. Where We Sail
                 DestinationsSection(key: controller.destinationsKey),
-                const SizedBox(height: 80),
-                // Footer
+                
+                // 4. Available Now
+                const AvailableNowSection(),
+                
+                // 5. Our Services
+                ServicesSection(key: controller.servicesKey),
+                
+                // 6. Testimonial / About
+                AboutSection(key: controller.aboutKey),
+                
+                // 7. The Logbook
+                const LogbookSection(),
+                
+                // 8. Footer
                 Container(
                   key: controller.contactKey,
-                  color: AppColors.primaryNavy,
-                  padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
-                  width: double.infinity,
-                  child: Center(
-                    child: Text(
-                      '© 2026 Meridian Yacht Charters. All rights reserved.',
-                      style: AppTextStyles.bodyMedium.copyWith(color: AppColors.white),
-                    ),
-                  ),
-                )
+                  child: const FooterSection(),
+                ),
               ],
             ),
           ),

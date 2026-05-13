@@ -8,14 +8,14 @@ class OffersSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 800;
+    final isMobile = size.width < 1000;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 80, vertical: 40),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 80, vertical: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('— SEASONAL OFFERS · 03', style: AppTextStyles.overline),
+          Text('— SEASONAL OFFERS · 02', style: AppTextStyles.overline.copyWith(color: AppColors.accentGold)),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,7 +28,7 @@ class OffersSection extends StatelessWidget {
                     const TextSpan(text: 'Currently sailing at '),
                     TextSpan(
                       text: 'special rates.',
-                      style: AppTextStyles.heading2Italic,
+                      style: AppTextStyles.heading2Italic.copyWith(color: AppColors.accentGoldLight),
                     ),
                   ],
                 ),
@@ -65,7 +65,7 @@ class OffersSection extends StatelessWidget {
                       title: 'Complimentary private chef',
                       subtitle: 'ALL 2026 BOOKINGS',
                       badge: 'Gift',
-                      bgColor: AppColors.accentGold,
+                      bgColor: AppColors.accentGoldLight,
                       textColor: AppColors.primaryNavy,
                     ),
                     const SizedBox(height: 20),
@@ -98,7 +98,7 @@ class OffersSection extends StatelessWidget {
                         title: 'Complimentary private chef',
                         subtitle: 'ALL 2026 BOOKINGS',
                         badge: 'Gift',
-                        bgColor: AppColors.accentGold,
+                        bgColor: AppColors.accentGoldLight,
                         textColor: AppColors.primaryNavy,
                       ),
                     ),
@@ -144,7 +144,7 @@ class _OfferCard extends StatelessWidget {
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8), // Small radius
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,34 +156,34 @@ class _OfferCard extends StatelessWidget {
                 children: [
                   Icon(Icons.local_offer_outlined, size: 14, color: textColor),
                   const SizedBox(width: 8),
-                  Text(tag, style: AppTextStyles.overline.copyWith(color: textColor)),
+                  Text(tag, style: AppTextStyles.overline.copyWith(color: textColor, letterSpacing: 2.0)),
                 ],
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   color: AppColors.primaryNavy.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
                   badge,
-                  style: AppTextStyles.heading4.copyWith(color: textColor, fontSize: 20),
+                  style: AppTextStyles.heading4.copyWith(color: textColor, fontSize: 18),
                 ),
               )
             ],
           ),
           const SizedBox(height: 30),
-          Text(title, style: AppTextStyles.heading3.copyWith(color: textColor, fontSize: 28)),
+          Text(title, style: AppTextStyles.heading3.copyWith(color: textColor, fontSize: 24)),
           const SizedBox(height: 10),
-          Text(subtitle, style: AppTextStyles.overline.copyWith(color: textColor.withOpacity(0.7))),
-          const SizedBox(height: 40),
+          Text(subtitle, style: AppTextStyles.overline.copyWith(color: textColor.withOpacity(0.7), fontSize: 8, letterSpacing: 2.0)),
+          const SizedBox(height: 60),
           Divider(color: textColor.withOpacity(0.2)),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('RESERVE THIS CHARTER', style: AppTextStyles.buttonText.copyWith(color: textColor, fontSize: 10)),
-              Icon(Icons.arrow_forward_outlined, size: 16, color: textColor),
+              Icon(Icons.arrow_forward_outlined, size: 14, color: textColor),
             ],
           )
         ],

@@ -11,25 +11,33 @@ class CatalogueSection extends StatelessWidget {
     final isMobile = size.width < 800;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 80, vertical: 40),
+      color: AppColors.backgroundLight,
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 80, vertical: 80),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              RichText(
-                text: TextSpan(
-                  style: AppTextStyles.heading2.copyWith(fontSize: isMobile ? 32 : 48),
-                  children: [
-                    const TextSpan(text: 'A private catalogue of\n'),
-                    TextSpan(
-                      text: 'extraordinary',
-                      style: AppTextStyles.heading2Italic,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('— THE FLEET · 04 FEATURED', style: AppTextStyles.overline.copyWith(color: AppColors.accentGold)),
+                  const SizedBox(height: 20),
+                  RichText(
+                    text: TextSpan(
+                      style: AppTextStyles.heading2.copyWith(fontSize: isMobile ? 32 : 48),
+                      children: [
+                        const TextSpan(text: 'A private catalogue of\n'),
+                        TextSpan(
+                          text: 'extraordinary',
+                          style: AppTextStyles.heading2Italic.copyWith(color: AppColors.accentGoldLight),
+                        ),
+                        const TextSpan(text: ' vessels.'),
+                      ],
                     ),
-                    const TextSpan(text: ' vessels.'),
-                  ],
-                ),
+                  ),
+                ],
               ),
               if (!isMobile)
                 TextButton(
@@ -50,23 +58,7 @@ class CatalogueSection extends StatelessWidget {
               ? Column(
                   children: [
                     _YachtCard(
-                      number: 'No 01',
-                      category: 'EXPLORER · 64M',
-                      name: 'Nocturne',
-                      details: '14 GUESTS  |  FROM \$420,000 / WEEK',
-                      imageUrl: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=2044&auto=format&fit=crop',
-                    ),
-                    const SizedBox(height: 40),
-                    _YachtCard(
-                      number: 'No 02',
-                      category: 'CLASSIC MOTOR · 44M',
-                      name: 'Belle Époque',
-                      details: '10 GUESTS  |  FROM \$220,000 / WEEK',
-                      imageUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=2070&auto=format&fit=crop',
-                    ),
-                    const SizedBox(height: 40),
-                    _YachtCard(
-                      number: 'No 03',
+                      number: 'Nº 01',
                       category: 'MOTOR YACHT · 52M',
                       name: 'Aurelia',
                       details: '12 GUESTS  |  FROM \$285,000 / WEEK',
@@ -74,11 +66,27 @@ class CatalogueSection extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     _YachtCard(
-                      number: 'No 04',
+                      number: 'Nº 02',
                       category: 'SAILING YACHT · 38M',
                       name: 'Solstice',
                       details: '8 GUESTS  |  FROM \$160,000 / WEEK',
                       imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop',
+                    ),
+                    const SizedBox(height: 40),
+                    _YachtCard(
+                      number: 'Nº 03',
+                      category: 'EXPLORER · 64M',
+                      name: 'Nocturne',
+                      details: '14 GUESTS  |  FROM \$420,000 / WEEK',
+                      imageUrl: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=2044&auto=format&fit=crop',
+                    ),
+                    const SizedBox(height: 40),
+                    _YachtCard(
+                      number: 'Nº 04',
+                      category: 'CLASSIC MOTOR · 44M',
+                      name: 'Belle Époque',
+                      details: '10 GUESTS  |  FROM \$220,000 / WEEK',
+                      imageUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=2070&auto=format&fit=crop',
                     ),
                   ],
                 )
@@ -89,19 +97,19 @@ class CatalogueSection extends StatelessWidget {
                       child: Column(
                         children: [
                           _YachtCard(
-                            number: 'No 01',
-                            category: 'EXPLORER · 64M',
-                            name: 'Nocturne',
-                            details: '14 GUESTS  |  FROM \$420,000 / WEEK',
-                            imageUrl: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=2044&auto=format&fit=crop',
-                          ),
-                          const SizedBox(height: 60),
-                          _YachtCard(
-                            number: 'No 03',
+                            number: 'Nº 01',
                             category: 'MOTOR YACHT · 52M',
                             name: 'Aurelia',
                             details: '12 GUESTS  |  FROM \$285,000 / WEEK',
                             imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop',
+                          ),
+                          const SizedBox(height: 40),
+                          _YachtCard(
+                            number: 'Nº 03',
+                            category: 'EXPLORER · 64M',
+                            name: 'Nocturne',
+                            details: '14 GUESTS  |  FROM \$420,000 / WEEK',
+                            imageUrl: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?q=80&w=2044&auto=format&fit=crop',
                           ),
                         ],
                       ),
@@ -113,19 +121,19 @@ class CatalogueSection extends StatelessWidget {
                         child: Column(
                           children: [
                             _YachtCard(
-                              number: 'No 02',
-                              category: 'CLASSIC MOTOR · 44M',
-                              name: 'Belle Époque',
-                              details: '10 GUESTS  |  FROM \$220,000 / WEEK',
-                              imageUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=2070&auto=format&fit=crop',
-                            ),
-                            const SizedBox(height: 60),
-                            _YachtCard(
-                              number: 'No 04',
+                              number: 'Nº 02',
                               category: 'SAILING YACHT · 38M',
                               name: 'Solstice',
                               details: '8 GUESTS  |  FROM \$160,000 / WEEK',
                               imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop',
+                            ),
+                            const SizedBox(height: 40),
+                            _YachtCard(
+                              number: 'Nº 04',
+                              category: 'CLASSIC MOTOR · 44M',
+                              name: 'Belle Époque',
+                              details: '10 GUESTS  |  FROM \$220,000 / WEEK',
+                              imageUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=2070&auto=format&fit=crop',
                             ),
                           ],
                         ),
@@ -181,7 +189,7 @@ class _YachtCard extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(30),
-          color: AppColors.textDark, // Dark grey background for banner
+          color: const Color(0xFF5A5C59), // Sage/grey dark background from design
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -189,20 +197,20 @@ class _YachtCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(category, style: AppTextStyles.overline),
+                  Text(category, style: AppTextStyles.overline.copyWith(color: AppColors.white.withOpacity(0.5))),
                   const SizedBox(height: 10),
                   Text(name, style: AppTextStyles.heading3.copyWith(color: AppColors.white)),
                   const SizedBox(height: 10),
-                  Text(details, style: AppTextStyles.bodySmall.copyWith(color: AppColors.white.withOpacity(0.7))),
+                  Text(details, style: AppTextStyles.overline.copyWith(color: AppColors.white)),
                 ],
               ),
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: AppColors.white.withOpacity(0.5)),
                 ),
-                child: const Icon(Icons.arrow_outward, color: AppColors.white, size: 20),
+                child: const Icon(Icons.arrow_forward_ios, color: AppColors.white, size: 14),
               )
             ],
           ),
